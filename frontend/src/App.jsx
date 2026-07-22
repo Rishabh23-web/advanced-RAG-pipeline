@@ -32,7 +32,7 @@ function App() {
       });
 
       const data = await response.json();
-      
+
       setMessages((prev) => [...prev, { role: 'assistant', content: data.answer || data.error }]);
     } catch (error) {
       console.error('Error fetching chat:', error);
@@ -45,10 +45,10 @@ function App() {
   // Helper to highlight citations like [Lesson: X @ Y]
   const formatText = (text) => {
     if (!text) return null;
-    
+
     // Split by citation pattern
     const parts = text.split(/(\[Lesson:.*?@.*?\])/g);
-    
+
     return parts.map((part, index) => {
       if (part.startsWith('[Lesson:')) {
         return (
@@ -73,10 +73,10 @@ function App() {
         {messages.length === 0 && (
           <div className="text-center text-gray-500 mt-10">
             <p>Ask a question about the course materials.</p>
-            <p className="text-sm">Example: "What is the temporal dead zone in Node.js?"</p>
+            <p className="text-sm">Example: "How do API routes work in Expo Router?"</p>
           </div>
         )}
-        
+
         {messages.map((msg, idx) => (
           <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div className={`max-w-[75%] rounded-lg p-4 shadow-sm ${msg.role === 'user' ? 'bg-blue-600 text-white' : 'bg-white text-gray-800 border border-gray-200'}`}>
@@ -89,7 +89,7 @@ function App() {
             </div>
           </div>
         ))}
-        
+
         {loading && (
           <div className="flex justify-start">
             <div className="bg-white text-gray-500 border border-gray-200 rounded-lg p-4 shadow-sm">
